@@ -3,7 +3,7 @@ import os
 from backend.system.scanfile import ScanFile
 from backend.system.process import Process
 from backend.system.network import Network
-
+from backend.data.breach import Breach
 
 
 
@@ -67,7 +67,18 @@ def execute():
 
 
         elif choice in ['4', 'data breaches']:
-            print("Data breaches checking functionality not implemented yet.")
+            choice = input("Enter your emaild id")
+            br = Breach(choice.trim())
+            breaches = br.getBreaches()
+            if breaches:
+                print("Your data was compromised in")
+                for item in breaches:
+                    print(item)
+            else:
+                print("Your data was not compromised")
+
+
+
 
         else:
             print("Invalid choice. Please enter a valid option.")

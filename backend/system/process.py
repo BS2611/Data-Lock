@@ -12,7 +12,6 @@ class Process:
             # Run the PowerShell script and capture the output
             result = subprocess.run(command, capture_output=True, text=True, check=True)
             output = result.stdout
-            print(f"Raw Output: {output}")  # Print the raw output for debugging
             if not output.strip():
                 raise ValueError("No output received from PowerShell script.")
             return output
@@ -44,8 +43,7 @@ class Process:
         if output:
             # Parse the JSON output
             unknown_processes = self.parse_json_output(output)
-            for process in unknown_processes:
-                print(f"Process Name: {process.get('ProcessName')}, Process ID: {process.get('ProcessId')}, Path: {process.get('Path')}, Publisher: {process.get('Publisher')}")
+
             return  unknown_processes
         else:
             return None
